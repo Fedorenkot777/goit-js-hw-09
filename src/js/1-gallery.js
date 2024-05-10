@@ -1,11 +1,26 @@
+const { preview } = require("vite");
 
-const gallery = document.querySelector(".gallery");
-
-const imgEl = images.map(image => {
-    return `<li class= "gallery-item"><a class="gallery-link" href="${image.original}">
-    <img class="gallery-image" src="${image.preview}" data-source="${image.original}"
-    alt="${image.description}"/></a>
-    </li>`
+const createImages = images.map(({preview, original, description})image => {
+    return `<li class= "item-gallery-item">
+    <a class="gallery-link" href="${original}">
+    <img
+    class="gallery-image"
+    src="${preview}" 
+    alt="${description}"/>
+    </a>
+  </li>`;
 }).join("");
 
-gallery.insertAdjacentHTML("beforeend", imgEl);
+containerImg.innerHTML = createImages;
+
+const localStorageImg = localStorage.getItem("createImages", JSON.stringify("createImages"));
+console.log(localStorageImg);
+
+const lightbox = new SimpleLightbox('.gallery a', {
+    caption: true,
+    captionsData: 'alt',
+    captionDelay: 250,
+});
+
+
+
