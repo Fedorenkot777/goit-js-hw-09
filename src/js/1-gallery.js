@@ -1,5 +1,6 @@
-import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from 'simplelightbox';
 import "simplelightbox/dist/simple-lightbox.min.css";
+
 
 const images = [
   {
@@ -67,9 +68,8 @@ const images = [
   },
 ];
 
-const { preview } = require("vite");
 
-const createImages = images.map(({preview, original, description})image => {
+const createImages = images.map(({preview, original, description}) => {
     return `<li class= "item-gallery-item">
     <a class="gallery-link" href="${original}">
     <img
