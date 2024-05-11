@@ -1,0 +1,30 @@
+.gallery {
+  width: 1440px;
+  height: 696px;
+  padding: 100px 156px;
+  gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+}
+
+.gallery-image {
+  width: 360px;
+  height: 300px;
+  flex-shrink: 0;
+}
+
+.gallery-image:hover {
+  width: 376px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.modal-image {
+  display: block;
+  width: 1112px;
+  height: 640px;
+}
