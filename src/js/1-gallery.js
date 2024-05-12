@@ -1,4 +1,4 @@
-import SimpleLightbox from 'simplelightbox';
+import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 
@@ -68,8 +68,9 @@ const images = [
   },
 ];
 
+const galleryContainer = document.querySelector(".gallery")
 
-const createImages = images.map(({preview, original, description}) => {
+const galleryMarkup = images.map( image => {
     return `<li class= "item-gallery-item">
     <a class="gallery-link" href="${original}">
     <img
@@ -80,14 +81,11 @@ const createImages = images.map(({preview, original, description}) => {
   </li>`;
 }).join("");
 
-containerImg.innerHTML = createImages;
+galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup(images));
 
-const localStorageImg = localStorage.getItem("createImages", JSON.stringify("createImages"));
-console.log(localStorageImg);
-
-const lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox(".gallery a", {
     caption: true,
-    captionsData: 'alt',
+    captionsData: "alt",
     captionDelay: 250,
 });
 

@@ -1,23 +1,44 @@
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
-
-form.addEventListener("input", handleUinpet)
-const formData = {
+let formData = {
     email: "",
-    message: "" 
-}
-function handleUinpet(event) {
-    const key = event.target.name
-    formData[key] = event.target.value;
-    console.log(formData);
+    message: ""
+};
+
+const form = document.querySelector(".feedback-form");
+const formDataKey = "feedback-form-state";
+let savedFormData = JSON.parse(localStorage.getItem(formDataKey));
+
+form.addEventListener("input", updateFormData);
+
+if (savedFormData) {
+  formData = savedFormData;
 }
 
-function populateText() {
-    const data = JSON.parse(localStorage.getItem());
-    if (!data) {
-        return;
-    }
-    const { email, message } = form.elements;
-    email.value = data.email;
-    message.value = data.message;
+function saveFormData() {
+  localStorage.setItem(formDataKey, JSON.stringify(formData));
 }
+
+function updateFormData(event) {
+  const { name, value } = event.target;
+  formData[name] = value.trim();
+  saveFormData();
+}
+
+form.email.value = formData.email;
+form.message.value = formData.message;
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  if (!formData.email.trim() || !formData.message.trim()) {
+    alert("Fill please all fields");
+    return;
+  }
+
+  console.log(formData);
+  localStorage.removeItem(formDataKey);
+  form.reset();
+    Object.assign(formData, {
+        email: "",
+        message: ""
+    });
+});
