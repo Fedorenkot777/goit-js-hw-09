@@ -81,7 +81,7 @@ const imgEl = images.map( image => {
   </li>`;
 }).join("");
 
-gallery.insertAdjacentHTML("beforeend", imgElnün);
+gallery.insertAdjacentHTML("beforeend", imgEl);
 
 const lightbox = new SimpleLightbox(".gallery a", {
     caption: true,
